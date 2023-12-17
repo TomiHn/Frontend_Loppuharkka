@@ -1,5 +1,7 @@
 <script>
     import Dropdown from "../Components/Dropdown.svelte";
+    import { gotoMain } from "$lib/Functions";
+
 </script>
 
 <h3>Add new notes for course</h3>
@@ -13,7 +15,7 @@
 
 
 <button id="save">Save</button>
-<button id="back">Back</button>
+<button id="back" on:click={gotoMain}>Back</button>
 
 
 

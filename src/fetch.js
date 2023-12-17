@@ -1,18 +1,22 @@
-// // @ts-nocheck
+// @ts-nocheck
+import { writable } from "svelte/store";
 
-// export async function FetchData(Api){
-//     let data;
-//     await fetch(Api)
-//     .then(response => response.json())
-//     .then(fetchedData => {
-//         data = fetchedData;
-//         console.log(data)});
-//     return JSON.stringify(data);
-// }
+export const notes = writable([])
+export const courses = writable([])
 
+export async function FetchData(Api, store){
+    let data;
+    await fetch(Api)
+    .then(response => response.json())
+    .then(fetchedData => {
+        data = fetchedData;
+        store.set(data)});
+    return data;
+}
 
-// export let notes = FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/notes")
-// export let courses = FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses")
+FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/notes", notes)
+FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses", courses)
+
 
 
 

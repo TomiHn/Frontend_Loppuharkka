@@ -1,8 +1,4 @@
 <script>
-    // import { notes } from "../fetch";
-    // import { courses } from "../fetch";
-    // console.log(notes, courses)
-
 
 </script>
 
