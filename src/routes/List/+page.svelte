@@ -46,7 +46,7 @@
     {#each noteSelect as note}
         <div class="noteList">{note.course.name} id[{note.course.id}]: {note.text} <br>Timestamp: {note.timestamp}</div>
     {/each}
-<!-- Jos expoIn, näytetään viesti -->
+<!-- Jos ei, näytetään viesti -->
 {:else}
     <p>Ei muistiinpanoja!</p>
 {/if}

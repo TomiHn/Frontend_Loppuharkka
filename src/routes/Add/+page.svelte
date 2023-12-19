@@ -16,6 +16,7 @@
 
 <h3>Add new notes for course</h3>
 
+<!-- Listataan kurssit dropdown valikkoon -->
 <label for="courses">Course:</label>
 <select name="courses" bind:value={selectedOption}>
     {#if defaultValue}
@@ -46,11 +47,6 @@
         display: block;
         margin-top: 20px;
     }
-    /* section textarea{
-        height: 200px;
-        width: 400px;
-        
-    } */
     #back{
         margin-left: 20px;
     }
