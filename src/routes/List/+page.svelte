@@ -2,6 +2,7 @@
 // @ts-nocheck
     
     import { gotoMain } from "$lib/Functions";
+	import { expoIn } from "svelte/easing";
     import { notes, courses} from "../../fetch";
     let selectedOption = "all"
     let noteSelect = []
@@ -28,6 +29,7 @@
 
 <h3>List notes for courses</h3>
 
+<!-- Listataan kurssit dropdown valikkoon -->
 <label for="courses">Course:</label>
 <select name="courses" bind:value={selectedOption}>
     {#if defaultValue}
@@ -39,10 +41,12 @@
 </select>
 <button id="back" on:click={gotoMain}>Back</button>
 
+<!-- Jos on muistiinpanoja kurssille, listataan ne -->
 {#if noteSelect.length > 0}
     {#each noteSelect as note}
         <div class="noteList">{note.course.name} id[{note.course.id}]: {note.text} <br>Timestamp: {note.timestamp}</div>
     {/each}
+<!-- Jos expoIn, näytetään viesti -->
 {:else}
     <p>Ei muistiinpanoja!</p>
 {/if}
