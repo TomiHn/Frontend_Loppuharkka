@@ -27,7 +27,6 @@
     {/each}
 </select>
 
-<button id="back" on:click={gotoMain}>Back</button>
 
 <section>
     <label for="noteinput">Add notes</label>
