@@ -4,18 +4,26 @@
     import { gotoMain } from "$lib/Functions";
     import { notes, courses} from "../../fetch";
     let selectedOption = "all"
-
+    let noteSelect = []
     
     let defaultValue = "Select a course"
 
     let options;
 
     // $: console.log(notes)
-
-
     courses.subscribe(data => {
         options = data.map(course => ({value: course.name}))
     })
+    $: {if (selectedOption !== "all"){
+        notes.subscribe(data => { noteSelect = data.filter(note => note.course.name === selectedOption);})
+    }
+    else{
+        notes.subscribe(data => {
+            noteSelect = data;
+        })
+    }
+}
+
 </script>
 
 <h3>List notes for courses</h3>
@@ -29,11 +37,22 @@
         <option value={option.value}>{option.value}</option>
     {/each}
 </select>
-
 <button id="back" on:click={gotoMain}>Back</button>
 
+{#if noteSelect.length > 0}
+    {#each noteSelect as note}
+        <div class="noteList">{note.course.name} id[{note.course.id}]: {note.text} <br>Timestamp: {note.timestamp}</div>
+    {/each}
+{:else}
+    <p>Ei muistiinpanoja!</p>
+{/if}
+<style>
+    .noteList{
+        border: 1px solid black;
+        width: 500px;
+        height: 50px;
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
+</style>
 
-{#each $notes as note (note.id)}
-    <pre>{JSON.stringify(note, null, 2)}</pre>
-    <!-- <div>{note.text}</div> -->
-{/each}
