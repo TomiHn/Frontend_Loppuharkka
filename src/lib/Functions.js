@@ -17,7 +17,7 @@ export function NewCourse(newCourse){
     let largest = 0;   //Haetaan kursseista suurin id arvo ja kasvatetaan sitä yhdellä, näin uudella kurssilla on aina uusi id
     courses.update(currentCourses => {
         largest = Math.max(...currentCourses.map(course => course.id));
-        console.log(largest)
+        //Jos lista on tyhjä, Math.max palauttaa jonkun -Infifity objektin? arvon? luvun? tms. jos näin käy asetetaan largest itse
         if(largest === -Infinity){
             largest = -1
         }
@@ -48,6 +48,7 @@ export function NewNote(newNote, courseName){
 
         let largest = 0; //Haetaan muistiinpanoista suurin id arvo ja kasvatetaan sitä yhdellä, näin uudella muistiinpanolla on aina uusi id
         notes.update(currentNotes => {largest = Math.max(...currentNotes.map(note => note.id));
+            //Jos lista on tyhjä, Math.max palauttaa jonkun -Infifity objektin? arvon? luvun? tms. jos näin käy asetetaan largest itse
             if(largest === -Infinity){
                 largest = -1;
             };

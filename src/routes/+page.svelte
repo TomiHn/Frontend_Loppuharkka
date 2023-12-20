@@ -20,8 +20,6 @@
     {#if !disable}
         <a href="./Add">Create notes</a>
     {/if}
-
-    
     <a href="./List">List notes</a>
     <a href="./CourseAdd">Add courses</a>
 </div>
@@ -35,8 +33,22 @@
     .links{
         display: inline-block;
     }
+    .links a{
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        margin-right: 10px;
+        padding: 5px;
+        border-radius: 30%;
+        font-size: 1em;
+    }
     button{
         display: block;
-        margin-top: 10px;
+        font-size: 1em;
+        margin-top: 20px;
+    }
+    .links a:hover{
+        background-color: rgba(128, 128, 128, 0.37);
+        transition: 1ms;
     }
 </style>

@@ -28,5 +28,8 @@
         margin-top: 10px;
         font-size: 1.2em;
     }
-    
+    button{
+        margin-top: 10px;
+        margin-right: 10px;
+    }
 </style>

@@ -1,7 +1,8 @@
 Made by Tomi Hänninen
+
 Built using:
 
-Node v20.10.0
+Node v20.10.0 (functionality also tested on Node v16.14)
 Svelte v4.2.7
 
 To install dependencies, run:

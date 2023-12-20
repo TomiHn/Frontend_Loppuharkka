@@ -18,7 +18,7 @@ export function formatDate(date) {
     minute = minute.toString().padStart(2, "0");
     second = second.toString().padStart(2, "0");
 
-    //Luodaan formatoitu string
+    //Luodaan formatoitu stringi
     let formattedDate = `${year}-${month}-${day} ${hour}:${minute}:${second}`; // "2022-10-23 13:13:13"
 
     return formattedDate;
