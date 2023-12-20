@@ -1,9 +1,11 @@
 <script>
 // @ts-nocheck
 
-    import { gotoMain } from "$lib/Functions";
+    import { NewNote, gotoMain } from "$lib/Functions";
     import { notes, courses} from "../../fetch";
-    let selectedOption = "all"
+    let selectedOption = ""
+    let newNote = ""
+    let savedNote = false;
 
     let defaultValue = "Select a course"
 
@@ -16,11 +18,11 @@
 
 <h3>Add new notes for course</h3>
 
-<!-- Listataan kurssit dropdown valikkoon -->
+<!-- Listataan kurssit dropdown valikkoon, jos on tallennettu muistiinpano, lukitaan valintamahdollisuus -->
 <label for="courses">Course:</label>
-<select name="courses" bind:value={selectedOption}>
+<select name="courses" bind:value={selectedOption} disabled={savedNote}>
     {#if defaultValue}
-        <option value="all" disabled selected>{defaultValue}</option>
+        <option value="" disabled selected>{defaultValue}</option>
     {/if}
     {#each options as option}
         <option value={option.value}>{option.value}</option>
@@ -30,13 +32,14 @@
 
 <section>
     <label for="noteinput">Add notes</label>
-    <textarea name="" id="" cols="40" rows="10" placeholder="Add notes here"></textarea>
+    <textarea name="" id="" cols="40" rows="10" placeholder="Add notes here" bind:value={newNote}></textarea>
 </section>
 
 
-
-<button id="save">Save</button>
-<button id="back" on:click={gotoMain}>Back</button>
+<!-- save nappi tallentaa uuden muistiinpanon ja tyhjentää kentän, jos kurssia ei ole valittu, nappi ei toimi, samalla tallennetaan savedNote muuttujaan että onko tallennettu -->
+<button id="save" on:click={() => {NewNote(newNote, selectedOption); newNote = ""; savedNote = true}} disabled= {selectedOption === ""}>Save</button>
+<!-- Back nappi vie päävsivulle, ja resettaa "session", jonka jälkeen voi taas valita uuden kurssin -->
+<button id="back" on:click={() => {gotoMain(); savedNote = false}}>Back</button>
 
 
 

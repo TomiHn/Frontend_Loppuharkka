@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
     
-    import { gotoMain } from "$lib/Functions";
+    import { DeleteNote, gotoMain } from "$lib/Functions";
 	import { expoIn } from "svelte/easing";
     import { notes, courses} from "../../fetch";
     let selectedOption = "all"
@@ -44,19 +44,26 @@
 <!-- Jos on muistiinpanoja kurssille, listataan ne -->
 {#if noteSelect.length > 0}
     {#each noteSelect as note}
-        <div class="noteList">{note.course.name} id[{note.course.id}]: {note.text} <br>Timestamp: {note.timestamp}</div>
+        <div class="noteList">
+            <div>{note.course.name}, id[{note.course.id}]: {note.text} <br>Timestamp: {note.timestamp}</div>
+            <button on:click={() => DeleteNote(note.id)}>Delete</button>
+        </div>
     {/each}
 <!-- Jos ei, näytetään viesti -->
 {:else}
     <p>Ei muistiinpanoja!</p>
 {/if}
+
 <style>
     .noteList{
         border: 1px solid black;
         width: 500px;
-        height: 50px;
+        /* height: 50px; */
         margin-top: 10px;
         font-size: 1.2em;
+    }
+    .noteList button{
+        margin-bottom: 5px;
     }
 </style>
 

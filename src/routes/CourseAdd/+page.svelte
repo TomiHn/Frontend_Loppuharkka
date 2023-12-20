@@ -23,7 +23,8 @@
 
 <div class="message">{message}</div>
 
-<!-- <pre>{JSON. stringify($courses, null, 2)}</pre> -->
+<pre>{JSON. stringify($courses, null, 2)}</pre>
+<pre>{JSON. stringify($notes, null, 2)}</pre>
 
 <style>
     .message{
