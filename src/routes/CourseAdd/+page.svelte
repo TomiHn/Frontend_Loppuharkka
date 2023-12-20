@@ -2,7 +2,6 @@
 // @ts-nocheck
 
 	import { NewCourse, gotoMain } from "$lib/Functions";
-	import { notes, courses } from "../../fetch";
     
     let message = "";
     let newCourse = "";
@@ -23,8 +22,6 @@
 
 <div class="message">{message}</div>
 
-<pre>{JSON. stringify($courses, null, 2)}</pre>
-<pre>{JSON. stringify($notes, null, 2)}</pre>
 
 <style>
     .message{

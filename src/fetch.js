@@ -16,8 +16,6 @@ export async function FetchData(Api, store){
     return data;
 }
 
-FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/notes", notes)
-FetchData("https://luentomuistiinpano-api.netlify.app/.netlify/functions/courses", courses)
 
 
 

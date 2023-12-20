@@ -14,9 +14,13 @@ export function NewCourse(newCourse){
         return;
     }
 
-    let largest = 0;   //Haetaan kurrseista suurin id arvo ja kasvatetaan sitä yhdellä, näin uudella kurssilla on aina uusi id
+    let largest = 0;   //Haetaan kursseista suurin id arvo ja kasvatetaan sitä yhdellä, näin uudella kurssilla on aina uusi id
     courses.update(currentCourses => {
         largest = Math.max(...currentCourses.map(course => course.id));
+        console.log(largest)
+        if(largest === -Infinity){
+            largest = -1
+        }
         return currentCourses;
     });
 
@@ -37,15 +41,25 @@ export function NewNote(newNote, courseName){
     let courseFind = null;
     courses.update(currentCourses => { courseFind = currentCourses.find(course => course.name === courseName);
         return currentCourses;});
+
+        
     //jos löytyy, luodaan uusi muistiinpano
     if(courseFind){
+
+        let largest = 0; //Haetaan muistiinpanoista suurin id arvo ja kasvatetaan sitä yhdellä, näin uudella muistiinpanolla on aina uusi id
+        notes.update(currentNotes => {largest = Math.max(...currentNotes.map(note => note.id));
+            if(largest === -Infinity){
+                largest = -1;
+            };
+            return currentNotes;
+        });
         let date = new Date();
-        let newNoteAdd = {id: courseFind.id,
+        let newNoteAdd = {id: largest +1,
                           text: newNote,
                           course: courseFind,
                           timestamp: formatDate(date)};
                           
-        //lisätään uusi muistiinpano notes storeen
+                          //lisätään uusi muistiinpano notes storeen
         notes.update(currentNotes => {return [...currentNotes, newNoteAdd];})
         return newNoteAdd;
         

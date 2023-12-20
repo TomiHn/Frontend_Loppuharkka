@@ -3,6 +3,7 @@
 
     import { NewNote, gotoMain } from "$lib/Functions";
     import { notes, courses} from "../../fetch";
+    let savedNotes = [];
     let selectedOption = ""
     let newNote = ""
     let savedNote = false;
@@ -36,12 +37,17 @@
 </section>
 
 
+
+
 <!-- save nappi tallentaa uuden muistiinpanon ja tyhjentää kentän, jos kurssia ei ole valittu, nappi ei toimi, samalla tallennetaan savedNote muuttujaan että onko tallennettu -->
-<button id="save" on:click={() => {NewNote(newNote, selectedOption); newNote = ""; savedNote = true}} disabled= {selectedOption === ""}>Save</button>
+<button id="save" on:click={() => {NewNote(newNote, selectedOption); savedNotes=[...savedNotes, newNote]; newNote = ""; savedNote = true}} disabled= {selectedOption === ""}>Save</button>
 <!-- Back nappi vie päävsivulle, ja resettaa "session", jonka jälkeen voi taas valita uuden kurssin -->
-<button id="back" on:click={() => {gotoMain(); savedNote = false}}>Back</button>
+<button id="back" on:click={() => {gotoMain(); savedNote = false; savedNotes = []}}>Back</button>
 
 
+{#each savedNotes as note}
+    <div class="noteDisplay">{note}</div>
+{/each}
 
 
 <style>
@@ -51,5 +57,9 @@
     }
     #back{
         margin-left: 20px;
+    }
+    .noteDisplay{
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 </style>

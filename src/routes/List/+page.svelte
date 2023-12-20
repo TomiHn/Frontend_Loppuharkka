@@ -2,7 +2,6 @@
 // @ts-nocheck
     
     import { DeleteNote, gotoMain } from "$lib/Functions";
-	import { expoIn } from "svelte/easing";
     import { notes, courses} from "../../fetch";
     let selectedOption = "all"
     let noteSelect = []
